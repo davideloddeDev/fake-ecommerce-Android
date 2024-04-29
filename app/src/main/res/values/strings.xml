@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">fake Ecommerce</string>
+    <string name="search_hint">Cerca</string>
+    <string name="back">Indietro</string>
+</resources>
