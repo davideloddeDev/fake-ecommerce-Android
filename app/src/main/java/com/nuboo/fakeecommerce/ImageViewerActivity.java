@@ -37,5 +37,6 @@ public class ImageViewerActivity extends AppCompatActivity {
             }
         });
 
+
     }
 }
