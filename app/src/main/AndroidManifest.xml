@@ -15,6 +15,9 @@
         android:theme="@style/Theme.FakeEcommerce"
         tools:targetApi="31">
         <activity
+            android:name=".ResocontoActivity"
+            android:exported="false" />
+        <activity
             android:name=".ImageViewerActivity"
             android:exported="false" />
         <activity

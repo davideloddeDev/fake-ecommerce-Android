@@ -1,6 +1,7 @@
 package com.nuboo.fakeecommerce;
 
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,6 +45,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
     static class ProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     private ImageView productImage;
+    private String id;
     private TextView productName;
     private TextView productDescription;
     private TextView productPrice;
@@ -56,10 +58,15 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         productDescription = itemView.findViewById(R.id.product_description);
         productPrice = itemView.findViewById(R.id.product_price);
         productImage.setOnClickListener(this);
+        productName.setOnClickListener(this);
+        productDescription.setOnClickListener(this);
+        productPrice.setOnClickListener(this);
+
     }
 
     void bind(Product product) {
         this.product = product; // Assegna l'oggetto Product corrente
+        id = String.valueOf(product.getId());
         productName.setText(product.getTitle());
         productDescription.setText(product.getDescription());
         productPrice.setText(String.format("$%.2f", product.getPrice()));
@@ -76,8 +83,20 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             intent.putExtra("image_url", product.getImage()); // Usa l'oggetto Product corrente
             itemView.getContext().startActivity(intent);
         }
+        if (v.getId() == R.id.product_name && v.getId() == R.id.product_description && v.getId() == R.id.product_price) {
+            resoconto(Integer.parseInt(id));
+        }
     }
-}
+
+        private void resoconto(int id) {
+            Log.d("id", String.valueOf(id));
+            Intent resocontoIntent = new Intent(itemView.getContext(), ResocontoActivity.class);
+            resocontoIntent.putExtra("id", id);
+            itemView.getContext().startActivity(resocontoIntent);
+        }
+
+
+    }
 
 }
 
